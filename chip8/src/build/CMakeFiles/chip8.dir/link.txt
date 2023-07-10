@@ -1,0 +1,1 @@
+/usr/sbin/c++ CMakeFiles/chip8.dir/main.cpp.o CMakeFiles/chip8.dir/chip8.cpp.o CMakeFiles/chip8.dir/gfx.cpp.o -o chip8  -Wl,-rpath,/root/projects/cpp/lib/SDL/build /root/projects/cpp/lib/SDL/build/libSDL3.so.0.0.0 
