@@ -152,6 +152,10 @@ int chip8::loadROM(std::string romFileName)
 >>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 }
 
+
+
+
+
 int chip8::readInstruction(chip8 *cpu)
 {
 
