@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
+<<<<<<< HEAD
   "/root/projects/cpp/lib/SDL/build/SDL3Config.cmake"
   "/root/projects/cpp/lib/SDL/build/SDL3ConfigVersion.cmake"
   "/root/projects/cpp/lib/SDL/build/SDL3headersTargets.cmake"
@@ -35,6 +36,40 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake/Modules/Platform/Linux-GNU.cmake"
   "/usr/share/cmake/Modules/Platform/Linux.cmake"
   "/usr/share/cmake/Modules/Platform/UnixPaths.cmake"
+=======
+  "/Users/danielkatsale/projects/cpp/chip8/src/CMakeLists.txt"
+  "CMakeFiles/3.26.4/CMakeCCompiler.cmake"
+  "CMakeFiles/3.26.4/CMakeCXXCompiler.cmake"
+  "CMakeFiles/3.26.4/CMakeSystem.cmake"
+  "/Users/danielkatsale/projects/cpp/lib/SDL/build/SDL3Config.cmake"
+  "/Users/danielkatsale/projects/cpp/lib/SDL/build/SDL3ConfigVersion.cmake"
+  "/Users/danielkatsale/projects/cpp/lib/SDL/build/SDL3headersTargets.cmake"
+  "/Users/danielkatsale/projects/cpp/lib/SDL/build/SDL3sharedTargets.cmake"
+  "/Users/danielkatsale/projects/cpp/lib/SDL/build/SDL3testTargets.cmake"
+  "/Users/danielkatsale/projects/cpp/lib/SDL/build/sdlfind.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/CMakeCInformation.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/CMakeCXXInformation.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/CMakeCommonLanguageInclude.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/CMakeGenericSystem.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/CMakeInitializeConfigs.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/CMakeLanguageInformation.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/CMakeSystemSpecificInformation.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/CMakeSystemSpecificInitialize.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/Compiler/AppleClang-C.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/Compiler/AppleClang-CXX.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/Compiler/Clang.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/Compiler/GNU.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/FeatureSummary.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/Platform/Apple-AppleClang-C.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/Platform/Apple-AppleClang-CXX.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/Platform/Apple-Clang-C.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/Platform/Apple-Clang-CXX.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/Platform/Apple-Clang.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/Platform/Darwin-Initialize.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/Platform/Darwin.cmake"
+  "/usr/local/Cellar/cmake/3.26.4/share/cmake/Modules/Platform/UnixPaths.cmake"
+>>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
   )
 
 # The corresponding makefile is:

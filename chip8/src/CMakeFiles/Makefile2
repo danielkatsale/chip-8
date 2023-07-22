@@ -45,19 +45,33 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
+<<<<<<< HEAD
 CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
 RM = /usr/bin/cmake -E rm -f
+=======
+CMAKE_COMMAND = /usr/local/Cellar/cmake/3.26.4/bin/cmake
+
+# The command to remove a file.
+RM = /usr/local/Cellar/cmake/3.26.4/bin/cmake -E rm -f
+>>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /root/projects/cpp/projects/chip8
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /root/projects/cpp/projects/chip8/src
+=======
+CMAKE_SOURCE_DIR = /Users/danielkatsale/projects/cpp/chip8/src
+
+# The top-level build directory on which CMake was run.
+CMAKE_BINARY_DIR = /Users/danielkatsale/projects/cpp/chip8/src
+>>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -81,14 +95,24 @@ clean: CMakeFiles/chip8.dir/clean
 CMakeFiles/chip8.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chip8.dir/build.make CMakeFiles/chip8.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/chip8.dir/build.make CMakeFiles/chip8.dir/build
+<<<<<<< HEAD
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/root/projects/cpp/projects/chip8/src/CMakeFiles --progress-num=1,2 "Built target chip8"
+=======
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/danielkatsale/projects/cpp/chip8/src/CMakeFiles --progress-num=1,2,3,4 "Built target chip8"
+>>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 .PHONY : CMakeFiles/chip8.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/chip8.dir/rule: cmake_check_build_system
+<<<<<<< HEAD
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/projects/cpp/projects/chip8/src/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/chip8.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /root/projects/cpp/projects/chip8/src/CMakeFiles 0
+=======
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/danielkatsale/projects/cpp/chip8/src/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/chip8.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/danielkatsale/projects/cpp/chip8/src/CMakeFiles 0
+>>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 .PHONY : CMakeFiles/chip8.dir/rule
 
 # Convenience name for target.

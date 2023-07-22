@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 set(CMAKE_C_COMPILER "/usr/sbin/cc")
 set(CMAKE_C_COMPILER_ARG1 "")
 set(CMAKE_C_COMPILER_ID "GNU")
 set(CMAKE_C_COMPILER_VERSION "13.1.1")
+=======
+set(CMAKE_C_COMPILER "/Library/Developer/CommandLineTools/usr/bin/cc")
+set(CMAKE_C_COMPILER_ARG1 "")
+set(CMAKE_C_COMPILER_ID "AppleClang")
+set(CMAKE_C_COMPILER_VERSION "15.0.0.15000034")
+>>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 set(CMAKE_C_COMPILER_VERSION_INTERNAL "")
 set(CMAKE_C_COMPILER_WRAPPER "")
 set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "17")
@@ -13,7 +20,11 @@ set(CMAKE_C11_COMPILE_FEATURES "c_std_11;c_static_assert")
 set(CMAKE_C17_COMPILE_FEATURES "c_std_17")
 set(CMAKE_C23_COMPILE_FEATURES "c_std_23")
 
+<<<<<<< HEAD
 set(CMAKE_C_PLATFORM_ID "Linux")
+=======
+set(CMAKE_C_PLATFORM_ID "Darwin")
+>>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 set(CMAKE_C_SIMULATE_ID "")
 set(CMAKE_C_COMPILER_FRONTEND_VARIANT "GNU")
 set(CMAKE_C_SIMULATE_VERSION "")
@@ -21,6 +32,7 @@ set(CMAKE_C_SIMULATE_VERSION "")
 
 
 
+<<<<<<< HEAD
 set(CMAKE_AR "/usr/sbin/ar")
 set(CMAKE_C_COMPILER_AR "/usr/sbin/gcc-ar")
 set(CMAKE_RANLIB "/usr/sbin/ranlib")
@@ -28,6 +40,15 @@ set(CMAKE_C_COMPILER_RANLIB "/usr/sbin/gcc-ranlib")
 set(CMAKE_LINKER "/usr/sbin/ld")
 set(CMAKE_MT "")
 set(CMAKE_COMPILER_IS_GNUCC 1)
+=======
+set(CMAKE_AR "/Library/Developer/CommandLineTools/usr/bin/ar")
+set(CMAKE_C_COMPILER_AR "")
+set(CMAKE_RANLIB "/Library/Developer/CommandLineTools/usr/bin/ranlib")
+set(CMAKE_C_COMPILER_RANLIB "")
+set(CMAKE_LINKER "/Library/Developer/CommandLineTools/usr/bin/ld")
+set(CMAKE_MT "")
+set(CMAKE_COMPILER_IS_GNUCC )
+>>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 set(CMAKE_C_COMPILER_LOADED 1)
 set(CMAKE_C_COMPILER_WORKS TRUE)
 set(CMAKE_C_ABI_COMPILED TRUE)
@@ -41,7 +62,11 @@ set(CMAKE_C_LINKER_PREFERENCE 10)
 
 # Save compiler ABI information.
 set(CMAKE_C_SIZEOF_DATA_PTR "8")
+<<<<<<< HEAD
 set(CMAKE_C_COMPILER_ABI "ELF")
+=======
+set(CMAKE_C_COMPILER_ABI "")
+>>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 set(CMAKE_C_BYTE_ORDER "LITTLE_ENDIAN")
 set(CMAKE_C_LIBRARY_ARCHITECTURE "")
 
@@ -66,7 +91,13 @@ endif()
 
 
 
+<<<<<<< HEAD
 set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "/usr/lib/gcc/x86_64-pc-linux-gnu/13.1.1/include;/usr/local/include;/usr/lib/gcc/x86_64-pc-linux-gnu/13.1.1/include-fixed;/usr/include")
 set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "gcc;gcc_s;c;gcc;gcc_s")
 set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/usr/lib/gcc/x86_64-pc-linux-gnu/13.1.1;/usr/lib;/lib")
+=======
+set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include;/Library/Developer/CommandLineTools/SDKs/MacOSX14.0.sdk/usr/include;/Library/Developer/CommandLineTools/usr/include")
+set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "")
+set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "")
+>>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")
