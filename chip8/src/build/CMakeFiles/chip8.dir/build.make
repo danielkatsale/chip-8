@@ -44,33 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-<<<<<<< HEAD
 CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
 RM = /usr/bin/cmake -E rm -f
-=======
-CMAKE_COMMAND = /usr/local/Cellar/cmake/3.26.4/bin/cmake
-
-# The command to remove a file.
-RM = /usr/local/Cellar/cmake/3.26.4/bin/cmake -E rm -f
->>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-<<<<<<< HEAD
 CMAKE_SOURCE_DIR = /root/projects/cpp/projects/chip8/src
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /root/projects/cpp/projects/chip8/src/build
-=======
-CMAKE_SOURCE_DIR = /Users/danielkatsale/projects/cpp/chip8/src
-
-# The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/danielkatsale/projects/cpp/chip8/src/build
->>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 
 # Include any dependencies generated for this target.
 include CMakeFiles/chip8.dir/depend.make
@@ -84,7 +70,6 @@ include CMakeFiles/chip8.dir/progress.make
 include CMakeFiles/chip8.dir/flags.make
 
 CMakeFiles/chip8.dir/main.cpp.o: CMakeFiles/chip8.dir/flags.make
-<<<<<<< HEAD
 CMakeFiles/chip8.dir/main.cpp.o: /root/projects/cpp/projects/chip8/src/main.cpp
 CMakeFiles/chip8.dir/main.cpp.o: CMakeFiles/chip8.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/root/projects/cpp/projects/chip8/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/chip8.dir/main.cpp.o"
@@ -125,48 +110,6 @@ CMakeFiles/chip8.dir/gfx.cpp.i: cmake_force
 CMakeFiles/chip8.dir/gfx.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chip8.dir/gfx.cpp.s"
 	/usr/sbin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /root/projects/cpp/projects/chip8/src/gfx.cpp -o CMakeFiles/chip8.dir/gfx.cpp.s
-=======
-CMakeFiles/chip8.dir/main.cpp.o: /Users/danielkatsale/projects/cpp/chip8/src/main.cpp
-CMakeFiles/chip8.dir/main.cpp.o: CMakeFiles/chip8.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/danielkatsale/projects/cpp/chip8/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/chip8.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chip8.dir/main.cpp.o -MF CMakeFiles/chip8.dir/main.cpp.o.d -o CMakeFiles/chip8.dir/main.cpp.o -c /Users/danielkatsale/projects/cpp/chip8/src/main.cpp
-
-CMakeFiles/chip8.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/chip8.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/danielkatsale/projects/cpp/chip8/src/main.cpp > CMakeFiles/chip8.dir/main.cpp.i
-
-CMakeFiles/chip8.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chip8.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/danielkatsale/projects/cpp/chip8/src/main.cpp -o CMakeFiles/chip8.dir/main.cpp.s
-
-CMakeFiles/chip8.dir/chip8.cpp.o: CMakeFiles/chip8.dir/flags.make
-CMakeFiles/chip8.dir/chip8.cpp.o: /Users/danielkatsale/projects/cpp/chip8/src/chip8.cpp
-CMakeFiles/chip8.dir/chip8.cpp.o: CMakeFiles/chip8.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/danielkatsale/projects/cpp/chip8/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/chip8.dir/chip8.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chip8.dir/chip8.cpp.o -MF CMakeFiles/chip8.dir/chip8.cpp.o.d -o CMakeFiles/chip8.dir/chip8.cpp.o -c /Users/danielkatsale/projects/cpp/chip8/src/chip8.cpp
-
-CMakeFiles/chip8.dir/chip8.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/chip8.dir/chip8.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/danielkatsale/projects/cpp/chip8/src/chip8.cpp > CMakeFiles/chip8.dir/chip8.cpp.i
-
-CMakeFiles/chip8.dir/chip8.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chip8.dir/chip8.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/danielkatsale/projects/cpp/chip8/src/chip8.cpp -o CMakeFiles/chip8.dir/chip8.cpp.s
-
-CMakeFiles/chip8.dir/gfx.cpp.o: CMakeFiles/chip8.dir/flags.make
-CMakeFiles/chip8.dir/gfx.cpp.o: /Users/danielkatsale/projects/cpp/chip8/src/gfx.cpp
-CMakeFiles/chip8.dir/gfx.cpp.o: CMakeFiles/chip8.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/danielkatsale/projects/cpp/chip8/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/chip8.dir/gfx.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/chip8.dir/gfx.cpp.o -MF CMakeFiles/chip8.dir/gfx.cpp.o.d -o CMakeFiles/chip8.dir/gfx.cpp.o -c /Users/danielkatsale/projects/cpp/chip8/src/gfx.cpp
-
-CMakeFiles/chip8.dir/gfx.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/chip8.dir/gfx.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/danielkatsale/projects/cpp/chip8/src/gfx.cpp > CMakeFiles/chip8.dir/gfx.cpp.i
-
-CMakeFiles/chip8.dir/gfx.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/chip8.dir/gfx.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/danielkatsale/projects/cpp/chip8/src/gfx.cpp -o CMakeFiles/chip8.dir/gfx.cpp.s
->>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 
 # Object files for target chip8
 chip8_OBJECTS = \
@@ -181,17 +124,10 @@ chip8: CMakeFiles/chip8.dir/main.cpp.o
 chip8: CMakeFiles/chip8.dir/chip8.cpp.o
 chip8: CMakeFiles/chip8.dir/gfx.cpp.o
 chip8: CMakeFiles/chip8.dir/build.make
-<<<<<<< HEAD
 chip8: /root/projects/cpp/lib/SDL/build/libSDL3.so.0.0.0
 chip8: /root/projects/cpp/lib/SDL/src/dynapi/SDL_dynapi.sym
 chip8: CMakeFiles/chip8.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/root/projects/cpp/projects/chip8/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable chip8"
-=======
-chip8: /Users/danielkatsale/projects/cpp/lib/SDL/build/libSDL3.1.0.0.dylib
-chip8: /Users/danielkatsale/projects/cpp/lib/SDL/src/dynapi/SDL_dynapi.sym
-chip8: CMakeFiles/chip8.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/danielkatsale/projects/cpp/chip8/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable chip8"
->>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chip8.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -203,10 +139,6 @@ CMakeFiles/chip8.dir/clean:
 .PHONY : CMakeFiles/chip8.dir/clean
 
 CMakeFiles/chip8.dir/depend:
-<<<<<<< HEAD
 	cd /root/projects/cpp/projects/chip8/src/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /root/projects/cpp/projects/chip8/src /root/projects/cpp/projects/chip8/src /root/projects/cpp/projects/chip8/src/build /root/projects/cpp/projects/chip8/src/build /root/projects/cpp/projects/chip8/src/build/CMakeFiles/chip8.dir/DependInfo.cmake --color=$(COLOR)
-=======
-	cd /Users/danielkatsale/projects/cpp/chip8/src/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/danielkatsale/projects/cpp/chip8/src /Users/danielkatsale/projects/cpp/chip8/src /Users/danielkatsale/projects/cpp/chip8/src/build /Users/danielkatsale/projects/cpp/chip8/src/build /Users/danielkatsale/projects/cpp/chip8/src/build/CMakeFiles/chip8.dir/DependInfo.cmake --color=$(COLOR)
->>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 .PHONY : CMakeFiles/chip8.dir/depend
 

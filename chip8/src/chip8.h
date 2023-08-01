@@ -14,14 +14,15 @@
 #define RAM_SIZE 4096
 #define FONTSTART 0x50
 #define FONTSETSIZE 80
+#define WIDTH 64
+#define HEIGHT 32
+
 class chip8 {
 
-private:
+  // private:
+public:
   uint8_t mem[RAM_SIZE];
-  uint8_t gfx[64 * 32];
-  uint8_t keyboard[16];
 
-  uint8_t delay_timer;
   uint8_t sound_timer;
 
   uint16_t pc;
@@ -32,7 +33,6 @@ private:
   uint8_t V[0x10];
   uint16_t opcode;
 
-  bool drawFlag = false;
   uint8_t fontset[80] = {
       0xF0, 0x90, 0x90, 0x90, 0xF0, // 0
       0x20, 0x60, 0x20, 0x20, 0x70, // 1
@@ -52,14 +52,19 @@ private:
       0xF0, 0x80, 0xF0, 0x80, 0x80  // F
   };
 
-  int readInstruction(chip8 *cpu);
-
   SDL_Renderer *renderer;
   SDL_Window *window;
   SDL_Texture *screen;
 
-public:
+  // change all to protected after finishing this is very unsafe
+  uint8_t keyboard[16];
+  uint8_t delay_timer;
+  bool drawFlag = false;
+  uint8_t display[64 * 32];
   int loadROM(std::string fileName);
+  int initCPU(chip8 *cpu);
+  int readInstruction(chip8 *cpu);
+
   chip8();
   ~chip8();
 };

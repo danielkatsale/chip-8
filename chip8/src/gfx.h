@@ -1,19 +1,22 @@
+#include "chip8.h"
 #include <SDL3/SDL.h>
-<<<<<<< HEAD
-=======
-#include <stdlib.h>
+#include <SDL3/SDL_events.h>
+#include <SDL3/SDL_oldnames.h>
+#include <SDL3/SDL_render.h>
+#include <SDL3/SDL_video.h>
 #include <cstdio>
->>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
+#include <ostream>
+#include <stdlib.h>
 
-class gfx {
+class gfx : private chip8 {
+
+public:
+  void gfxLoop(const char *filename, chip8 *cpu);
+  void gfxDraw();
+  void gfxInit();
+  void gfxClean();
 
 private:
-  gfx();
-  ~gfx();
-
-<<<<<<< HEAD
-public:
-=======
   SDL_Renderer *renderer;
   SDL_Window *window;
   SDL_Surface *image;
@@ -21,11 +24,4 @@ public:
   SDL_Event event;
   bool quit = false;
   bool paused = false;
-
-
-public:
-
-
-
->>>>>>> fc1a0af (Finished readInstruction for chip8 emulation)
 };
