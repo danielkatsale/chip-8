@@ -12,7 +12,7 @@ class gfx : private chip8 {
 
 public:
   void gfxLoop(const char *filename, chip8 *cpu);
-  void gfxDraw();
+  void gfxDraw(chip8 *cpu);
   void gfxInit();
   void gfxClean();
 

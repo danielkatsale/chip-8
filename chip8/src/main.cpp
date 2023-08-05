@@ -18,7 +18,7 @@ int main(int argc, char **argv) {
 
   gfx.gfxInit();
   cpu.initCPU(&cpu);
-  cpu.loadROM(argv[1]);
+  cpu.loadROM(argv[1], &cpu);
   cpu.readInstruction(&cpu);
   gfx.gfxLoop(argv[1], &cpu);
   gfx.gfxClean();

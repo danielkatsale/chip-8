@@ -61,7 +61,7 @@ public:
   uint8_t delay_timer;
   bool drawFlag = false;
   uint8_t display[64 * 32];
-  int loadROM(std::string fileName);
+  int loadROM(std::string fileName, chip8 *cpu);
   int initCPU(chip8 *cpu);
   int readInstruction(chip8 *cpu);
 

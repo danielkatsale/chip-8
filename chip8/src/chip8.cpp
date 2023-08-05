@@ -9,18 +9,18 @@ chip8::~chip8() {}
 //
 
 int chip8::initCPU(chip8 *cpu) {
-  pc = 0x200;
+  cpu->pc = 0x200;
   /*for (int i = 0; i < 4096; i++) {
     mem[i] = 0;
   }*/
   /*for (int i = 0; i < 64 * 32; i++) {
     gfx[i] = 0;
   }*/
-  memset(mem, 0, RAM_SIZE);
-  memset(display, 0, TOTAL_PIXELS);
-  memset(V, 0, 16);
-  memset(stack, 0, 16);
-  opcode = 0;
+  memset(cpu->mem, 0, RAM_SIZE);
+  memset(cpu->display, 0, TOTAL_PIXELS);
+  memset(cpu->V, 0, 16);
+  memset(cpu->stack, 0, 16);
+  cpu->opcode = 0;
 
   /*V[0x0] = 0;
   V[0x1] = 0;
@@ -39,50 +39,71 @@ int chip8::initCPU(chip8 *cpu) {
   V[0xE] = 0;
   V[0xF] = 0;
 */
-  index_ = 0;
-  sp = 0;
-  delay_timer = 0;
-  sound_timer = 0;
+  cpu->index_ = 0;
+  cpu->sp = 0;
+  cpu->delay_timer = 0;
+  cpu->sound_timer = 0;
 
   for (int i = 0; i < FONTSETSIZE; i++) {
-    mem[FONTSTART + i] = fontset[i];
+    cpu->mem[FONTSTART + i] = cpu->fontset[i];
   }
+
+  srand(time(0));
 
   return 0;
 }
-int chip8::loadROM(std::string romFileName) {
+int chip8::loadROM(std::string romFileName, chip8 *cpu) {
 
-  std::ifstream romFile(romFileName, std::ios::in | std::ios::binary);
-  std::ifstream::pos_type pos = romFile.tellg();
-  int length = pos;
+  std::ifstream romFile(romFileName, std::ifstream::binary);
+  romFile.seekg(0, std::ios::end);
+  uint64_t length = romFile.tellg();
+  romFile.seekg(0, std::ios::beg);
 
-  char *buffer = new char[length];
   SDL_RenderClear(renderer);
   screen = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
                              SDL_TEXTUREACCESS_STREAMING, 16 * 64, 16 * 32);
 
-  while (!romFile.eof()) {
-    romFile.seekg(0, std::ios::beg);
-    romFile.read(buffer, length);
+  char *buffer = new char[length];
+
+  if (!buffer) {
+    std::cout << "buffer allocation failed!" << std::endl;
+    exit(EXIT_FAILURE);
   }
 
-  uint8_t *buffer2 = (uint8_t *)buffer;
+  if (!romFile) {
+    // romFile.seekg(0, std::ios::beg);
+    // romFile.read(buffer, length);
+    std::cout << "Couldn't read file" << std::endl;
+    exit(EXIT_FAILURE);
+  }
+  romFile.read(buffer, length);
+  std::streamsize result = romFile.gcount();
+
+  if (result != length) {
+    std::cout << "Game file loading failed!\n";
+    std::cout << "Result: " << result << "!="
+              << "Length of file:  " << length << std::endl;
+    exit(EXIT_FAILURE);
+  }
+  std::cout << "Loading Game file to buffer...Sucess!\n";
 
   if ((0xFFF - 0x200) > length) {
     for (int i = 0; i < length; i++) {
-      mem[i + 0x200] = buffer[i];
+      cpu->mem[i + 0x200] = buffer[i];
     }
   }
 
   romFile.close();
-  free(buffer2);
+  delete[] buffer;
 
   return 0;
 }
 
 int chip8::readInstruction(chip8 *cpu) {
 
-  cpu->opcode = mem[cpu->pc] << 8 | mem[cpu->pc + 1];
+  cpu->opcode = cpu->mem[cpu->pc] << 8 | cpu->mem[cpu->pc + 1];
+
+  std::cout << "opcode: " << std::hex << cpu->opcode << std::endl;
 
   switch (cpu->opcode & 0xF000) {
 
@@ -93,13 +114,13 @@ int chip8::readInstruction(chip8 *cpu) {
 
     case 0x0000:
       memset(cpu->display, 0, TOTAL_PIXELS);
-      drawFlag = true;
+      cpu->drawFlag = true;
       cpu->pc += 2;
       break;
 
     case 0x000E:
-      cpu->pc = stack[cpu->sp]; // maybe fix this to be proper pointers
       --cpu->sp;
+      cpu->pc = cpu->stack[cpu->sp]; // maybe fix this to be proper pointers
       cpu->pc += 2;
       break;
 
@@ -113,7 +134,7 @@ int chip8::readInstruction(chip8 *cpu) {
     break;
 
   case 0x2000:
-    stack[cpu->sp] = cpu->pc;
+    cpu->stack[cpu->sp] = cpu->pc;
     cpu->sp++;
     cpu->pc = cpu->opcode & 0x0FFF;
     break;
@@ -121,18 +142,22 @@ int chip8::readInstruction(chip8 *cpu) {
   case 0x3000:
     if (cpu->V[(cpu->opcode & 0x0F00) >> 8] == (cpu->opcode & 0x00FF))
       cpu->pc += 2;
+    cpu->pc += 2;
+    break;
 
   case 0x4000:
     if (cpu->V[(cpu->opcode & 0x0F00) >> 8] != (cpu->opcode & 0x00FF))
       cpu->pc += 2;
+    cpu->pc += 2;
     break;
   case 0x5000:
     if (cpu->V[(cpu->opcode & 0x0F00) >> 8] == V[(cpu->opcode & 0x00F0) >> 4])
       cpu->pc += 2;
+    cpu->pc += 2;
     break;
   case 0x6000:
-    if (cpu->V[(cpu->opcode & 0x0F00) >> 8] == (cpu->opcode & 0x00FF))
-      cpu->pc += 2;
+    cpu->V[(cpu->opcode & 0x0F00) >> 8] = cpu->opcode & 0x00FF;
+    cpu->pc += 2;
     break;
   case 0x7000:
     // if (cpu->V[(cpu->opcode & 0x0F00) >> 8] == cpu->opcode & 0x00FF)
@@ -234,9 +259,9 @@ int chip8::readInstruction(chip8 *cpu) {
 
     if (cpu->V[(cpu->opcode & 0x0F00) >> 8] !=
         (cpu->V[(cpu->opcode & 0x00F0) >> 4]))
-      pc += 2;
+      cpu->pc += 2;
 
-    pc += 2;
+    cpu->pc += 2;
 
     break;
 
@@ -260,13 +285,13 @@ int chip8::readInstruction(chip8 *cpu) {
     uint16_t pixel;
 
     for (int y_cord = 0; y_cord < height; y_cord++) {
-      pixel = mem[cpu->index_ + y_cord];
+      pixel = cpu->mem[cpu->index_ + y_cord];
       for (int x_cord = 0; x_cord < 8; x_cord++) {
         if ((pixel & (0x80 >> x_cord)) != 0) {
-          if (display[(x + x_cord + ((y + y_cord) * 64))] == 1) {
+          if (cpu->display[(x + x_cord + ((y + y_cord) * 64))] == 1) {
             cpu->V[0xF] = 1;
           }
-          display[x + x_cord + ((y + y_cord) * 64)] ^= 1;
+          cpu->display[x + x_cord + ((y + y_cord) * 64)] ^= 1;
         }
       }
     }
@@ -276,17 +301,17 @@ int chip8::readInstruction(chip8 *cpu) {
   case 0xE000:
     switch (cpu->opcode & 0x00FF) {
     case 0x009E:
-      if (keyboard[cpu->V[(cpu->opcode & 0x0F00) >> 8]] != 0)
-        pc += 4;
+      if (cpu->keyboard[cpu->V[(cpu->opcode & 0x0F00) >> 8]] != 0)
+        cpu->pc += 4;
       else
-        pc += 2;
+        cpu->pc += 2;
 
       break;
     case 0x00A1:
-      if (keyboard[cpu->V[(cpu->opcode & 0x0F00) >> 8]] == 0)
-        pc += 4;
+      if (cpu->keyboard[cpu->V[(cpu->opcode & 0x0F00) >> 8]] == 0)
+        cpu->pc += 4;
       else
-        pc += 2;
+        cpu->pc += 2;
 
       break;
 
@@ -296,6 +321,7 @@ int chip8::readInstruction(chip8 *cpu) {
     break;
   case 0xF000:
     switch (cpu->opcode & 0x00FF) {
+
     case 0x0007:
       cpu->V[(cpu->opcode & 0x0F00) >> 8] = cpu->delay_timer;
       cpu->pc += 2;
@@ -303,7 +329,7 @@ int chip8::readInstruction(chip8 *cpu) {
     case 0x000A: {
 
       for (int i = 0; i < 16; ++i) {
-        if (keyboard[i] != 0) {
+        if (cpu->keyboard[i] != 0) {
           cpu->V[(cpu->opcode & 0x0F00) >> 8] = i;
         }
       }
@@ -315,10 +341,12 @@ int chip8::readInstruction(chip8 *cpu) {
       cpu->delay_timer = cpu->V[(cpu->opcode & 0x0F00) >> 8];
       cpu->pc += 2;
       break;
+
     case 0x0018:
       cpu->sound_timer = cpu->V[(cpu->opcode & 0x0F00) >> 8];
       cpu->pc += 2;
       break;
+
     case 0x001E:
       if (cpu->index_ + cpu->V[(cpu->opcode & 0x0F00) >> 8] > 0xFFF)
 
@@ -329,24 +357,29 @@ int chip8::readInstruction(chip8 *cpu) {
       cpu->index_ += cpu->V[(cpu->opcode & 0x0F00) >> 8];
       cpu->pc += 2;
       break;
+
     case 0x0029:
       cpu->index_ = FONTSTART + cpu->V[(cpu->opcode & 0x0F00) >> 8] * 0x5;
       cpu->pc += 2;
       break;
+
     case 0x0030:
       cpu->index_ = cpu->V[(cpu->opcode & 0x0F00) >> 8] * 0x5;
       cpu->pc += 2;
       break;
+
     case 0x0033:
-      mem[cpu->index_] = cpu->V[(cpu->opcode & 0x0F00) >> 8] / 100;
-      mem[cpu->index_ + 1] = (cpu->V[(cpu->opcode & 0x0F00) >> 8] / 10) % 10;
-      mem[cpu->index_ + 2] = (cpu->V[(cpu->opcode & 0x0F00) >> 8] % 100) % 10;
+      cpu->mem[cpu->index_] = cpu->V[(cpu->opcode & 0x0F00) >> 8] / 100;
+      cpu->mem[cpu->index_ + 1] =
+          (cpu->V[(cpu->opcode & 0x0F00) >> 8] / 10) % 10;
+      cpu->mem[cpu->index_ + 2] =
+          (cpu->V[(cpu->opcode & 0x0F00) >> 8] % 100) % 10;
       cpu->pc += 2;
       break;
 
     case 0x0055:
       for (int i = 0; i <= ((cpu->opcode & 0x0F00) >> 8); i++)
-        mem[cpu->index_ + i] = cpu->V[i];
+        cpu->mem[cpu->index_ + i] = cpu->V[i];
 
       cpu->pc += 2;
 
@@ -354,14 +387,15 @@ int chip8::readInstruction(chip8 *cpu) {
 
     case 0x0065:
       for (int i = 0; i <= ((cpu->opcode & 0x0F00) >> 8); i++)
-        cpu->V[i] = mem[cpu->index_ + i];
+        cpu->V[i] = cpu->mem[cpu->index_ + i];
 
       cpu->pc += 2;
 
       break;
 
     default:
-      std::cout << "Error: unknown cpu->opcode [0xF000] " << cpu->opcode;
+      std::cout << "Error: unknown cpu->opcode [0xF000]: " << std::hex
+                << cpu->opcode << std::endl;
     }
     break;
 

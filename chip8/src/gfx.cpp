@@ -1,9 +1,9 @@
 #include "gfx.h"
+#include <iostream>
 
 void gfx::gfxInit() {
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-    std::cout << stderr << "SDL failed to initialize: " << SDL_GetError()
-              << std::endl;
+    std::cerr << "SDL failed to initialize: " << SDL_GetError() << std::endl;
 
   window = SDL_CreateWindow("CHIP-8", 640, 480, 0);
   renderer = SDL_CreateRenderer(
@@ -29,6 +29,7 @@ void gfx::gfxLoop(const char *filename, chip8 *cpu) {
   while (!quit) {
     while (SDL_PollEvent(&event)) {
       switch (event.type) {
+
       case SDL_EVENT_QUIT:
         gfxClean();
         quit = 1;
@@ -40,16 +41,19 @@ void gfx::gfxLoop(const char *filename, chip8 *cpu) {
           quit = 1;
           break;
         case SDLK_F1:
-          initCPU(cpu);
-          loadROM(filename);
-          readInstruction(cpu);
+          cpu->initCPU(cpu);
+          cpu->loadROM(filename, cpu);
+          cpu->readInstruction(cpu);
           gfxLoop(filename, cpu);
           gfxClean();
           break;
 
         case SDLK_n:
-          readInstruction(cpu);
+          cpu->readInstruction(cpu);
           gfxLoop(filename, cpu);
+          break;
+        case SDLK_p:
+          paused = !paused;
           break;
         case SDLK_F2:
           delay -= 1;
@@ -62,52 +66,52 @@ void gfx::gfxLoop(const char *filename, chip8 *cpu) {
           break;
 
         case SDLK_x:
-          keyboard[0] = 1;
+          cpu->keyboard[0] = 1;
           break;
         case SDLK_1:
-          keyboard[1] = 1;
+          cpu->keyboard[1] = 1;
           break;
         case SDLK_2:
-          keyboard[2] = 1;
+          cpu->keyboard[2] = 1;
           break;
         case SDLK_3:
-          keyboard[3] = 1;
+          cpu->keyboard[3] = 1;
           break;
         case SDLK_q:
-          keyboard[4] = 1;
+          cpu->keyboard[4] = 1;
           break;
         case SDLK_w:
-          keyboard[5] = 1;
+          cpu->keyboard[5] = 1;
           break;
         case SDLK_e:
-          keyboard[6] = 1;
+          cpu->keyboard[6] = 1;
           break;
         case SDLK_a:
-          keyboard[7] = 1;
+          cpu->keyboard[7] = 1;
           break;
         case SDLK_s:
-          keyboard[8] = 1;
+          cpu->keyboard[8] = 1;
           break;
         case SDLK_d:
-          keyboard[9] = 1;
+          cpu->keyboard[9] = 1;
           break;
         case SDLK_z:
-          keyboard[10] = 1;
+          cpu->keyboard[10] = 1;
           break;
         case SDLK_c:
-          keyboard[11] = 1;
+          cpu->keyboard[11] = 1;
           break;
         case SDLK_4:
-          keyboard[12] = 1;
+          cpu->keyboard[12] = 1;
           break;
         case SDLK_r:
-          keyboard[13] = 1;
+          cpu->keyboard[13] = 1;
           break;
         case SDLK_f:
-          keyboard[14] = 1;
+          cpu->keyboard[14] = 1;
           break;
         case SDLK_v:
-          keyboard[15] = 1;
+          cpu->keyboard[15] = 1;
           break;
         }
         break;
@@ -115,52 +119,52 @@ void gfx::gfxLoop(const char *filename, chip8 *cpu) {
       case SDL_EVENT_KEY_UP:
         switch (event.key.keysym.sym) {
         case SDLK_x:
-          keyboard[0] = 0;
+          cpu->keyboard[0] = 0;
           break;
         case SDLK_1:
-          keyboard[1] = 0;
+          cpu->keyboard[1] = 0;
           break;
         case SDLK_2:
-          keyboard[2] = 0;
+          cpu->keyboard[2] = 0;
           break;
         case SDLK_3:
-          keyboard[3] = 0;
+          cpu->keyboard[3] = 0;
           break;
         case SDLK_q:
-          keyboard[4] = 0;
+          cpu->keyboard[4] = 0;
           break;
         case SDLK_w:
-          keyboard[5] = 0;
+          cpu->keyboard[5] = 0;
           break;
         case SDLK_e:
-          keyboard[6] = 0;
+          cpu->keyboard[6] = 0;
           break;
         case SDLK_a:
-          keyboard[7] = 0;
+          cpu->keyboard[7] = 0;
           break;
         case SDLK_s:
-          keyboard[8] = 0;
+          cpu->keyboard[8] = 0;
           break;
         case SDLK_d:
-          keyboard[9] = 0;
+          cpu->keyboard[9] = 0;
           break;
         case SDLK_z:
-          keyboard[10] = 0;
+          cpu->keyboard[10] = 0;
           break;
         case SDLK_c:
-          keyboard[11] = 0;
+          cpu->keyboard[11] = 0;
           break;
         case SDLK_4:
-          keyboard[12] = 0;
+          cpu->keyboard[12] = 0;
           break;
         case SDLK_r:
-          keyboard[13] = 0;
+          cpu->keyboard[13] = 0;
           break;
         case SDLK_f:
-          keyboard[14] = 0;
+          cpu->keyboard[14] = 0;
           break;
         case SDLK_v:
-          keyboard[15] = 0;
+          cpu->keyboard[15] = 0;
           break;
         }
         break;
@@ -174,16 +178,16 @@ void gfx::gfxLoop(const char *filename, chip8 *cpu) {
     } else
       SDL_Delay(delay);
 
-    if (delay_timer > 0)
-      --delay_timer;
+    if (cpu->delay_timer > 0)
+      --cpu->delay_timer;
 
     if (!paused)
-      readInstruction(cpu);
-    if (drawFlag)
-      gfxDraw();
+      cpu->readInstruction(cpu);
+    if (cpu->drawFlag)
+      gfxDraw(cpu);
   }
 }
-void gfx::gfxDraw() {
+void gfx::gfxDraw(chip8 *cpu) {
 
   SDL_FRect r;
   int x, y;
@@ -198,7 +202,7 @@ void gfx::gfxDraw() {
   SDL_SetRenderDrawColor(renderer, 0, 255, 0, 0);
   for (x = 0; x < WIDTH; x++) {
     for (y = 0; y < HEIGHT; y++) {
-      if (display[(x) + ((y) + WIDTH)] == 1) {
+      if (cpu->display[(x) + ((y)*WIDTH)] == 1) {
         r.x = x;
         r.y = y;
         SDL_RenderFillRect(renderer, &r);
@@ -207,7 +211,7 @@ void gfx::gfxDraw() {
   }
 
   SDL_RenderPresent(renderer);
-  drawFlag = false;
+  cpu->drawFlag = false;
 }
 
 void gfx::gfxClean() {
