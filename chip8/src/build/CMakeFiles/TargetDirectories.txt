@@ -1,3 +1,3 @@
-/Users/danielkatsale/projects/cpp/chip8/src/build/CMakeFiles/chip8.dir
-/Users/danielkatsale/projects/cpp/chip8/src/build/CMakeFiles/edit_cache.dir
-/Users/danielkatsale/projects/cpp/chip8/src/build/CMakeFiles/rebuild_cache.dir
+/home/elastak/projects/cpp/projects/chip-8/chip8/src/build/CMakeFiles/chip8.dir
+/home/elastak/projects/cpp/projects/chip-8/chip8/src/build/CMakeFiles/edit_cache.dir
+/home/elastak/projects/cpp/projects/chip-8/chip8/src/build/CMakeFiles/rebuild_cache.dir

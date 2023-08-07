@@ -5,12 +5,12 @@ void gfx::gfxInit() {
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     std::cerr << "SDL failed to initialize: " << SDL_GetError() << std::endl;
 
-  window = SDL_CreateWindow("CHIP-8", 640, 480, 0);
+  window = SDL_CreateWindow("CHIP-8", 640, 320, 0);
   renderer = SDL_CreateRenderer(
       window, NULL, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
   SDL_SetRenderLogicalPresentation(renderer, 64, 32,
                                    SDL_LOGICAL_PRESENTATION_INTEGER_SCALE,
-                                   SDL_SCALEMODE_LINEAR);
+                                   SDL_SCALEMODE_BEST);
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
   image = SDL_LoadBMP("logo.bmp");
