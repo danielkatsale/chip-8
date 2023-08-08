@@ -1,9 +1,9 @@
 #include "chip8.h"
-#include <SDL3/SDL.h>
-#include <SDL3/SDL_events.h>
-#include <SDL3/SDL_oldnames.h>
-#include <SDL3/SDL_render.h>
-#include <SDL3/SDL_video.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_events.h>
+// #include <SDL3/SDL_oldnames.h>
+#include <SDL2/SDL_render.h>
+#include <SDL2/SDL_video.h>
 #include <cstdio>
 #include <ostream>
 #include <stdlib.h>

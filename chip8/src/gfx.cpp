@@ -1,24 +1,26 @@
 #include "gfx.h"
+#include <SDL2/SDL_video.h>
+#include <SDL_hints.h>
+#include <SDL_render.h>
 #include <iostream>
 
 void gfx::gfxInit() {
   if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     std::cerr << "SDL failed to initialize: " << SDL_GetError() << std::endl;
-
-  window = SDL_CreateWindow("CHIP-8", 640, 320, 0);
+  SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0");
+  window = SDL_CreateWindow("CHIP-8", SDL_WINDOWPOS_UNDEFINED,
+                            SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, 0);
   renderer = SDL_CreateRenderer(
-      window, NULL, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-  SDL_SetRenderLogicalPresentation(renderer, 64, 32,
-                                   SDL_LOGICAL_PRESENTATION_INTEGER_SCALE,
-                                   SDL_SCALEMODE_BEST);
+      window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+  SDL_RenderSetLogicalSize(renderer, 64, 32);
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
 
   image = SDL_LoadBMP("logo.bmp");
   if (image != NULL) {
     screen = SDL_CreateTextureFromSurface(renderer, image);
-    SDL_DestroySurface(image);
+    SDL_FreeSurface(image);
     SDL_RenderClear(renderer);
-    SDL_RenderTexture(renderer, screen, NULL, NULL);
+    SDL_RenderCopy(renderer, screen, NULL, NULL);
     SDL_RenderPresent(renderer);
     SDL_Delay(2000);
   }
@@ -30,12 +32,12 @@ void gfx::gfxLoop(const char *filename, chip8 *cpu) {
     while (SDL_PollEvent(&event)) {
       switch (event.type) {
 
-      case SDL_EVENT_QUIT:
+      case SDL_QUIT:
         gfxClean();
         quit = 1;
         break;
 
-      case SDL_EVENT_KEY_DOWN:
+      case SDL_KEYDOWN:
         switch (event.key.keysym.sym) {
         case SDLK_ESCAPE:
           quit = 1;
@@ -116,7 +118,7 @@ void gfx::gfxLoop(const char *filename, chip8 *cpu) {
         }
         break;
 
-      case SDL_EVENT_KEY_UP:
+      case SDL_KEYUP:
         switch (event.key.keysym.sym) {
         case SDLK_x:
           cpu->keyboard[0] = 0;
@@ -189,7 +191,7 @@ void gfx::gfxLoop(const char *filename, chip8 *cpu) {
 }
 void gfx::gfxDraw(chip8 *cpu) {
 
-  SDL_FRect r;
+  SDL_Rect r;
   int x, y;
 
   r.x = 0;

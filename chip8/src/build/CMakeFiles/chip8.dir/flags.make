@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -isystem /home/elastak/projects/cpp/lib/SDL/build/include -isystem /home/elastak/projects/cpp/lib/SDL/include -isystem /home/elastak/projects/cpp/lib/SDL/include/SDL3
+CXX_INCLUDES = -isystem /usr/include/SDL2
 
-CXX_FLAGS = -idirafter/home/elastak/projects/cpp/lib/SDL/src/video/khronos
+CXX_FLAGS = 
 

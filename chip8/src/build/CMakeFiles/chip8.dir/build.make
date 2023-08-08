@@ -124,8 +124,8 @@ chip8: CMakeFiles/chip8.dir/main.cpp.o
 chip8: CMakeFiles/chip8.dir/chip8.cpp.o
 chip8: CMakeFiles/chip8.dir/gfx.cpp.o
 chip8: CMakeFiles/chip8.dir/build.make
-chip8: /home/elastak/projects/cpp/lib/SDL/build/libSDL3.so.0.0.0
-chip8: /home/elastak/projects/cpp/lib/SDL/src/dynapi/SDL_dynapi.sym
+chip8: /usr/lib/libSDL2main.a
+chip8: /usr/lib/libSDL2-2.0.so.0.2800.1
 chip8: CMakeFiles/chip8.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/elastak/projects/cpp/projects/chip-8/chip8/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable chip8"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/chip8.dir/link.txt --verbose=$(VERBOSE)

@@ -1,7 +1,7 @@
 #ifndef CHIP8_H_
 #define CHIP8_H_
 
-#include <SDL3/SDL.h>
+#include <SDL2/SDL.h>
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
@@ -10,12 +10,13 @@
 #include <stdint.h>
 #include <string.h>
 
-#define TOTAL_PIXELS 2048
+#define TOTAL_PIXELS (WIDTH * HEIGHT)
 #define RAM_SIZE 4096
 #define FONTSTART 0x50
 #define FONTSETSIZE 80
-#define WIDTH 64
-#define HEIGHT 32
+#define SCALE 16
+#define WIDTH (64 * SCALE)
+#define HEIGHT (32 * SCALE)
 
 class chip8 {
 
@@ -60,7 +61,7 @@ public:
   uint8_t keyboard[16];
   uint8_t delay_timer;
   bool drawFlag = false;
-  uint8_t display[64 * 32];
+  uint8_t display[TOTAL_PIXELS];
   int loadROM(std::string fileName, chip8 *cpu);
   int initCPU(chip8 *cpu);
   int readInstruction(chip8 *cpu);

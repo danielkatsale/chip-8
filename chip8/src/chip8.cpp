@@ -1,5 +1,5 @@
 #include "chip8.h"
-#include <SDL3/SDL_render.h>
+#include <SDL2/SDL_render.h>
 
 chip8::chip8() {}
 chip8::~chip8() {}
@@ -61,7 +61,7 @@ int chip8::loadROM(std::string romFileName, chip8 *cpu) {
 
   SDL_RenderClear(renderer);
   screen = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
-                             SDL_TEXTUREACCESS_STREAMING, 16 * 64, 16 * 32);
+                             SDL_TEXTUREACCESS_STREAMING, WIDTH, HEIGHT);
 
   char *buffer = new char[length];
 
@@ -198,14 +198,13 @@ int chip8::readInstruction(chip8 *cpu) {
       break;
     }
     case 0x0005: {
-      uint16_t result = cpu->V[(cpu->opcode & 0x0F00) >> 8] -
-                        cpu->V[(cpu->opcode & 0x00F0) >> 4];
 
-      if ((cpu->V[(cpu->opcode & 0x0F00) >> 8]) >=
-          (cpu->V[(cpu->opcode & 0x00F0) >> 4]))
-        cpu->V[0xF] = 1;
-      else
-        cpu->V[0xF] = 0;
+      uint8_t VxValue = cpu->V[(cpu->opcode & 0x0F00) >> 8];
+      uint8_t VyValue = cpu->V[(cpu->opcode & 0x00F0) >> 4];
+      uint8_t result = VxValue - VyValue;
+
+      cpu->V[0xF] = VxValue >= VyValue ? 1 : 0;
+
       cpu->V[(cpu->opcode & 0x0F00) >> 8] = result;
 
       cpu->pc += 2;
@@ -227,11 +226,11 @@ int chip8::readInstruction(chip8 *cpu) {
       cpu->V[(cpu->opcode & 0x0F00) >> 8] =
           cpu->V[(cpu->opcode & 0x00F0) >> 4] -
           cpu->V[(cpu->opcode & 0x0F00) >> 8];
-      if (cpu->V[(cpu->opcode & 0x0F00) >> 8] >
+      if (cpu->V[(cpu->opcode & 0x0F00) >> 8] <=
           (cpu->V[(cpu->opcode & 0x00F0) >> 4]))
-        cpu->V[0xF] = 0;
-      else
         cpu->V[0xF] = 1;
+      else
+        cpu->V[0xF] = 0;
 
       cpu->pc += 2;
 
@@ -282,19 +281,21 @@ int chip8::readInstruction(chip8 *cpu) {
     break;
   case 0xD000: {
 
-    uint16_t x = cpu->V[(cpu->opcode & 0x0F00) >> 8];
-    uint16_t y = cpu->V[(cpu->opcode & 0x00F0) >> 4];
-    uint16_t height = cpu->opcode & 0x000F;
-    uint16_t pixel;
+    uint8_t x = cpu->V[(cpu->opcode & 0x0F00) >> 8];
+    uint8_t y = cpu->V[(cpu->opcode & 0x00F0) >> 4];
+    uint8_t height = cpu->opcode & 0x000F;
+    uint8_t pixel;
+
+    cpu->V[0xF] = 0;
 
     for (int y_cord = 0; y_cord < height; y_cord++) {
       pixel = cpu->mem[cpu->index_ + y_cord];
       for (int x_cord = 0; x_cord < 8; x_cord++) {
         if ((pixel & (0x80 >> x_cord)) != 0) {
-          if (cpu->display[(x + x_cord + ((y + y_cord) * 64))] == 1) {
+          if (cpu->display[(x + x_cord + ((y + y_cord) * WIDTH))] == 1) {
             cpu->V[0xF] = 1;
           }
-          cpu->display[x + x_cord + ((y + y_cord) * 64)] ^= 1;
+          cpu->display[(x + x_cord + ((y + y_cord) * WIDTH))] ^= 1;
         }
       }
     }

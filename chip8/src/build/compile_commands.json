@@ -1,19 +1,19 @@
 [
 {
   "directory": "/home/elastak/projects/cpp/projects/chip-8/chip8/src/build",
-  "command": "/usr/bin/c++  -isystem /home/elastak/projects/cpp/lib/SDL/build/include -isystem /home/elastak/projects/cpp/lib/SDL/include -isystem /home/elastak/projects/cpp/lib/SDL/include/SDL3 -idirafter/home/elastak/projects/cpp/lib/SDL/src/video/khronos -o CMakeFiles/chip8.dir/main.cpp.o -c /home/elastak/projects/cpp/projects/chip-8/chip8/src/main.cpp",
+  "command": "/usr/bin/c++  -isystem /usr/include/SDL2  -o CMakeFiles/chip8.dir/main.cpp.o -c /home/elastak/projects/cpp/projects/chip-8/chip8/src/main.cpp",
   "file": "/home/elastak/projects/cpp/projects/chip-8/chip8/src/main.cpp",
   "output": "CMakeFiles/chip8.dir/main.cpp.o"
 },
 {
   "directory": "/home/elastak/projects/cpp/projects/chip-8/chip8/src/build",
-  "command": "/usr/bin/c++  -isystem /home/elastak/projects/cpp/lib/SDL/build/include -isystem /home/elastak/projects/cpp/lib/SDL/include -isystem /home/elastak/projects/cpp/lib/SDL/include/SDL3 -idirafter/home/elastak/projects/cpp/lib/SDL/src/video/khronos -o CMakeFiles/chip8.dir/chip8.cpp.o -c /home/elastak/projects/cpp/projects/chip-8/chip8/src/chip8.cpp",
+  "command": "/usr/bin/c++  -isystem /usr/include/SDL2  -o CMakeFiles/chip8.dir/chip8.cpp.o -c /home/elastak/projects/cpp/projects/chip-8/chip8/src/chip8.cpp",
   "file": "/home/elastak/projects/cpp/projects/chip-8/chip8/src/chip8.cpp",
   "output": "CMakeFiles/chip8.dir/chip8.cpp.o"
 },
 {
   "directory": "/home/elastak/projects/cpp/projects/chip-8/chip8/src/build",
-  "command": "/usr/bin/c++  -isystem /home/elastak/projects/cpp/lib/SDL/build/include -isystem /home/elastak/projects/cpp/lib/SDL/include -isystem /home/elastak/projects/cpp/lib/SDL/include/SDL3 -idirafter/home/elastak/projects/cpp/lib/SDL/src/video/khronos -o CMakeFiles/chip8.dir/gfx.cpp.o -c /home/elastak/projects/cpp/projects/chip-8/chip8/src/gfx.cpp",
+  "command": "/usr/bin/c++  -isystem /usr/include/SDL2  -o CMakeFiles/chip8.dir/gfx.cpp.o -c /home/elastak/projects/cpp/projects/chip-8/chip8/src/gfx.cpp",
   "file": "/home/elastak/projects/cpp/projects/chip-8/chip8/src/gfx.cpp",
   "output": "CMakeFiles/chip8.dir/gfx.cpp.o"
 }
