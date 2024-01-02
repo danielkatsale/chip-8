@@ -2,7 +2,7 @@
 
 CHIP-8 is an interpreted programming language designed in the 1970s for the COSMAC VIP and Telmac 1800 microcomputers. It was created by Joseph Weisbecker and was used primarily for game development.
 
-While not a hardware architecture, Chip-8 includes both a virtual machine and an associated set of conventions for designing simple video games.
+While not a hardware architecture, CHIP-8 includes both a virtual machine and an associated set of conventions for designing simple video games.
 
 
 # Demo
