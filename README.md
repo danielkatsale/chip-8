@@ -7,5 +7,5 @@ While not a hardware architecture, CHIP-8 includes both a virtual machine and an
 
 # Demo
 
-BRIX (Brick Breaker) Example:
+BRIX (Brick Breaker) Example on WSL2 Arch Linux:
 ![CHIP-8 BRIX Demo 1](https://github.com/danielkatsale/chip-8/assets/2997722/45632c6c-2c6e-4798-a400-3ff4574694ab)
